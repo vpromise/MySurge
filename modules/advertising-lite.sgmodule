@@ -1,0 +1,8 @@
+#!name=🛡️ 广告规则拦截
+#!desc=轻量引用 Yfamilys AdvertisingLite.list
+#!homepage=https://github.com/vpromise/MySurge
+#!author=vpromise
+#!icon=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Advertising.png
+
+[Rule]
+RULE-SET,https://yfamilys.com/rule/AdvertisingLite.list,REJECT,update-interval=86400

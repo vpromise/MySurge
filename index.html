@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%9B%A1%EF%B8%8F%3C/text%3E%3C/svg%3E">
+  <title>MySurge 模块安装</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f4f6f8;
+      --card: #ffffff;
+      --text: #17202a;
+      --muted: #667085;
+      --line: #e4e7ec;
+      --accent: #1668dc;
+      --warn-bg: #fff7e6;
+      --warn: #8a4b08;
+      --app: #e8f1ff;
+      --enhancement: #f2eafe;
+      --generic: #e9f8ef;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #101418;
+        --card: #181d23;
+        --text: #f2f4f7;
+        --muted: #a4acb8;
+        --line: #2c333d;
+        --accent: #69a7ff;
+        --warn-bg: #32250f;
+        --warn: #ffd28a;
+        --app: #162a45;
+        --enhancement: #2d2341;
+        --generic: #183425;
+      }
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 15px/1.55 -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", sans-serif;
+    }
+
+    main {
+      width: min(920px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 34px 0 56px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(28px, 7vw, 42px);
+      letter-spacing: -0.03em;
+    }
+
+    .lead {
+      margin: 8px 0 24px;
+      color: var(--muted);
+      max-width: 720px;
+    }
+
+    .notice {
+      margin: 0 0 22px;
+      padding: 14px 16px;
+      border: 1px solid color-mix(in srgb, var(--warn) 35%, transparent);
+      border-radius: 14px;
+      background: var(--warn-bg);
+      color: var(--warn);
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    button, .install {
+      border: 0;
+      border-radius: 10px;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .filter {
+      padding: 8px 12px;
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid var(--line);
+    }
+
+    .filter.active {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 12px;
+    }
+
+    article {
+      display: flex;
+      flex-direction: column;
+      min-height: 218px;
+      padding: 17px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--card);
+    }
+
+    .title-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .emoji {
+      font-size: 25px;
+      line-height: 1.2;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .meta {
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .tag {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 12px;
+    }
+
+    .tag.app { background: var(--app); }
+    .tag.enhancement { background: var(--enhancement); }
+    .tag.generic { background: var(--generic); }
+
+    .note {
+      flex: 1;
+      margin: 12px 0 16px;
+      color: var(--muted);
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .install {
+      display: inline-flex;
+      justify-content: center;
+      flex: 1;
+      padding: 9px 12px;
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+    }
+
+    .copy {
+      padding: 9px 12px;
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--line);
+    }
+
+    footer {
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    footer a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>MySurge</h1>
+    <p class="lead">Surge iOS App 净化与功能增强模块。按编号安装 App 专用模块，通用补漏放到最后。</p>
+
+    <div class="notice">
+      微博净化与 Vvebo 时间线修复会处理相同接口，不要同时启用。若 App 出现登录、支付、图片或页面异常，先关闭“开屏及 URL 补漏”。
+    </div>
+
+    <div class="filters" aria-label="模块筛选">
+      <button class="filter active" data-filter="all">全部</button>
+      <button class="filter" data-filter="app">App 净化</button>
+      <button class="filter" data-filter="enhancement">功能增强</button>
+      <button class="filter" data-filter="generic">通用补漏</button>
+    </div>
+
+    <section class="grid" id="module-grid"></section>
+
+    <footer>
+      模块来自 Yfamilys、原始作者与 QingRex；本站不托管第三方模块正文。
+      <a href="https://github.com/vpromise/MySurge">查看项目与验证记录</a>
+    </footer>
+  </main>
+
+  <script id="module-data" type="application/json">
+  [
+    {"id":"weibo","name":"微博净化","emoji":"🔴","category":"app","source":"Yfamilys","url":"https://yfamilys.com/module/weiboad.module","order":1,"note":"官方微博信息流、开屏及界面净化；与 Vvebo 时间线修复不要同时启用。"},
+    {"id":"wechat-article","name":"微信公众号净化","emoji":"💬","category":"app","source":"Yfamilys","url":"https://yfamilys.com/module/wechatad.module","order":2,"note":"微信公众号文章广告净化。"},
+    {"id":"wechat-applet","name":"微信小程序净化","emoji":"🧩","category":"app","source":"QingRex","url":"https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/微信小程序去广告.sgmodule","order":3,"note":"补齐微信小程序及相关页面广告。"},
+    {"id":"bilibili","name":"哔哩哔哩净化","emoji":"📺","category":"app","source":"app2smile","url":"https://raw.githubusercontent.com/app2smile/rules/master/module/bilibili.sgmodule","order":4,"note":"开屏、推荐、动态和播放页净化；与 1080P 功能分开。"},
+    {"id":"bilibili-hd","name":"B 站 1080P","emoji":"🎞️","category":"enhancement","source":"Yfamilys","url":"https://yfamilys.com/module/bili.module","order":5,"note":"独立画质增强，可单独关闭。"},
+    {"id":"youtube","name":"YouTube 净化","emoji":"▶️","category":"app","source":"Maasea","url":"https://raw.githubusercontent.com/Maasea/sgmodule/master/YouTube.Enhance.sgmodule","order":6,"note":"广告净化、画中画和后台播放。"},
+    {"id":"zhihu","name":"知乎净化","emoji":"🔷","category":"app","source":"Yfamilys","url":"https://yfamilys.com/sgmodule/ZhihuBlock.sgmodule","order":7,"note":"列表广告及页面精简。"},
+    {"id":"xiaohongshu","name":"小红书净化","emoji":"📕","category":"app","source":"QingRex","url":"https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/小红书去广告.sgmodule","order":8,"note":"开屏、信息流和搜索页净化。"},
+    {"id":"railway-12306","name":"12306 净化","emoji":"🚄","category":"app","source":"QingRex","url":"https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/12306去广告.sgmodule","order":9,"note":"开屏及页面广告净化。"},
+    {"id":"didi","name":"滴滴出行净化","emoji":"🚕","category":"app","source":"QingRex","url":"https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/滴滴出行去广告.sgmodule","order":10,"note":"页面活动和广告入口净化。"},
+    {"id":"amap","name":"高德地图净化","emoji":"🧭","category":"app","source":"QingRex","url":"https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/高德地图去广告.sgmodule","order":11,"note":"Yfamilys 当前高德文件存在转换语法错误，因此使用已通过检查的 QingRex 版本。"},
+    {"id":"xianyu","name":"闲鱼净化","emoji":"🐟","category":"app","source":"QingRex","url":"https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/闲鱼去广告.sgmodule","order":12,"note":"开屏、首页和搜索页净化。"},
+    {"id":"cainiao","name":"菜鸟净化","emoji":"📦","category":"app","source":"QingRex","url":"https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/菜鸟去广告.sgmodule","order":13,"note":"首页及相关页面净化。"},
+    {"id":"smzdm","name":"什么值得买净化","emoji":"💰","category":"app","source":"QingRex","url":"https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/什么值得买去广告.sgmodule","order":14,"note":"开屏、首页和搜索页净化。"},
+    {"id":"vvebo","name":"Vvebo 时间线修复","emoji":"🕊️","category":"enhancement","source":"QingRex","url":"https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/VVebo时间线修复.sgmodule","order":15,"note":"与微博净化处理相同接口；使用 Vvebo 时停用微博净化。"},
+    {"id":"startup-supplement","name":"开屏及 URL 补漏","emoji":"🚫","category":"generic","source":"Yfamilys","url":"https://yfamilys.com/module/AdBlock.module","order":16,"note":"覆盖面较广，建议最后启用；异常时优先关闭。"},
+    {"id":"advertising-lite","name":"广告规则拦截","emoji":"🛡️","category":"generic","source":"MySurge / Yfamilys","url":"https://raw.githubusercontent.com/vpromise/MySurge/main/modules/advertising-lite.sgmodule","order":17,"note":"轻量引用 Yfamilys AdvertisingLite.list，更新周期为 24 小时。"}
+  ]
+  </script>
+
+  <script>
+    const labels = {
+      app: "App 净化",
+      enhancement: "功能增强",
+      generic: "通用补漏"
+    };
+
+    const modules = JSON.parse(document.querySelector("#module-data").textContent)
+      .sort((a, b) => a.order - b.order);
+    const grid = document.querySelector("#module-grid");
+
+    function render(filter = "all") {
+      grid.replaceChildren();
+      modules
+        .filter(module => filter === "all" || module.category === filter)
+        .forEach(module => {
+          const card = document.createElement("article");
+          const installUrl = "surge:///install-module?url=" + encodeURIComponent(module.url);
+
+          card.innerHTML = `
+            <div class="title-row">
+              <span class="emoji" aria-hidden="true">${module.emoji}</span>
+              <div>
+                <h2>${module.order}. ${module.name}</h2>
+                <div class="meta">来源：${module.source}</div>
+              </div>
+            </div>
+            <span class="tag ${module.category}">${labels[module.category]}</span>
+            <p class="note">${module.note}</p>
+            <div class="actions">
+              <a class="install" href="${installUrl}">安装到 Surge</a>
+              <button class="copy" type="button">复制地址</button>
+            </div>
+          `;
+
+          card.querySelector(".copy").addEventListener("click", async event => {
+            const button = event.currentTarget;
+            const oldText = button.textContent;
+            await navigator.clipboard.writeText(module.url);
+            button.textContent = "已复制";
+            setTimeout(() => { button.textContent = oldText; }, 1200);
+          });
+
+          grid.append(card);
+        });
+    }
+
+    document.querySelectorAll(".filter").forEach(button => {
+      button.addEventListener("click", () => {
+        document.querySelectorAll(".filter").forEach(item => item.classList.remove("active"));
+        button.classList.add("active");
+        render(button.dataset.filter);
+      });
+    });
+
+    render();
+  </script>
+</body>
+</html>
