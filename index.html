@@ -194,7 +194,7 @@
     <p class="lead">Surge iOS App 净化与功能增强模块。按编号安装 App 专用模块，通用补漏放到最后。</p>
 
     <div class="notice">
-      微博净化与 Vvebo 时间线修复会处理相同接口，不要同时启用。若 App 出现登录、支付、图片或页面异常，先关闭“开屏及 URL 补漏”。
+      已经装过旧版时，请先删除 Uncategorized 中的旧副本再重新安装；本页模块会统一进入 vpromise 分类。微博净化与 Vvebo 时间线修复不要同时启用。
     </div>
 
     <div class="filters" aria-label="模块筛选">
@@ -207,29 +207,29 @@
     <section class="grid" id="module-grid"></section>
 
     <footer>
-      模块来自 Yfamilys、原始作者与 QingRex；本站不托管第三方模块正文。
+      模块来自 Yfamilys、原始作者与 QingRex；仓库快照仅统一增加 vpromise 分类。
       <a href="https://github.com/vpromise/MySurge">查看项目与验证记录</a>
     </footer>
   </main>
 
   <script id="module-data" type="application/json">
   [
-    {"id":"weibo","name":"微博净化","emoji":"🔴","category":"app","source":"Yfamilys","url":"https://yfamilys.com/module/weiboad.module","order":1,"note":"官方微博信息流、开屏及界面净化；与 Vvebo 时间线修复不要同时启用。"},
-    {"id":"wechat-article","name":"微信公众号净化","emoji":"💬","category":"app","source":"Yfamilys","url":"https://yfamilys.com/module/wechatad.module","order":2,"note":"微信公众号文章广告净化。"},
-    {"id":"wechat-applet","name":"微信小程序净化","emoji":"🧩","category":"app","source":"QingRex","url":"https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/微信小程序去广告.sgmodule","order":3,"note":"补齐微信小程序及相关页面广告。"},
-    {"id":"bilibili","name":"哔哩哔哩净化","emoji":"📺","category":"app","source":"app2smile","url":"https://raw.githubusercontent.com/app2smile/rules/master/module/bilibili.sgmodule","order":4,"note":"开屏、推荐、动态和播放页净化；与 1080P 功能分开。"},
-    {"id":"bilibili-hd","name":"B 站 1080P","emoji":"🎞️","category":"enhancement","source":"Yfamilys","url":"https://yfamilys.com/module/bili.module","order":5,"note":"独立画质增强，可单独关闭。"},
-    {"id":"youtube","name":"YouTube 净化","emoji":"▶️","category":"app","source":"Maasea","url":"https://raw.githubusercontent.com/Maasea/sgmodule/master/YouTube.Enhance.sgmodule","order":6,"note":"广告净化、画中画和后台播放。"},
-    {"id":"zhihu","name":"知乎净化","emoji":"🔷","category":"app","source":"Yfamilys","url":"https://yfamilys.com/sgmodule/ZhihuBlock.sgmodule","order":7,"note":"列表广告及页面精简。"},
-    {"id":"xiaohongshu","name":"小红书净化","emoji":"📕","category":"app","source":"QingRex","url":"https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/小红书去广告.sgmodule","order":8,"note":"开屏、信息流和搜索页净化。"},
-    {"id":"railway-12306","name":"12306 净化","emoji":"🚄","category":"app","source":"QingRex","url":"https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/12306去广告.sgmodule","order":9,"note":"开屏及页面广告净化。"},
-    {"id":"didi","name":"滴滴出行净化","emoji":"🚕","category":"app","source":"QingRex","url":"https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/滴滴出行去广告.sgmodule","order":10,"note":"页面活动和广告入口净化。"},
-    {"id":"amap","name":"高德地图净化","emoji":"🧭","category":"app","source":"QingRex","url":"https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/高德地图去广告.sgmodule","order":11,"note":"Yfamilys 当前高德文件存在转换语法错误，因此使用已通过检查的 QingRex 版本。"},
-    {"id":"xianyu","name":"闲鱼净化","emoji":"🐟","category":"app","source":"QingRex","url":"https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/闲鱼去广告.sgmodule","order":12,"note":"开屏、首页和搜索页净化。"},
-    {"id":"cainiao","name":"菜鸟净化","emoji":"📦","category":"app","source":"QingRex","url":"https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/菜鸟去广告.sgmodule","order":13,"note":"首页及相关页面净化。"},
-    {"id":"smzdm","name":"什么值得买净化","emoji":"💰","category":"app","source":"QingRex","url":"https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/什么值得买去广告.sgmodule","order":14,"note":"开屏、首页和搜索页净化。"},
-    {"id":"vvebo","name":"Vvebo 时间线修复","emoji":"🕊️","category":"enhancement","source":"QingRex","url":"https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/VVebo时间线修复.sgmodule","order":15,"note":"与微博净化处理相同接口；使用 Vvebo 时停用微博净化。"},
-    {"id":"startup-supplement","name":"开屏及 URL 补漏","emoji":"🚫","category":"generic","source":"Yfamilys","url":"https://yfamilys.com/module/AdBlock.module","order":16,"note":"覆盖面较广，建议最后启用；异常时优先关闭。"},
+    {"id":"weibo","name":"微博净化","emoji":"🔴","category":"app","source":"Yfamilys","url":"https://raw.githubusercontent.com/vpromise/MySurge/main/modules/weibo.sgmodule","order":1,"note":"官方微博信息流、开屏及界面净化；与 Vvebo 时间线修复不要同时启用。"},
+    {"id":"wechat-article","name":"微信公众号净化","emoji":"💬","category":"app","source":"Yfamilys","url":"https://raw.githubusercontent.com/vpromise/MySurge/main/modules/wechat-article.sgmodule","order":2,"note":"微信公众号文章广告净化。"},
+    {"id":"wechat-applet","name":"微信小程序净化","emoji":"🧩","category":"app","source":"QingRex","url":"https://raw.githubusercontent.com/vpromise/MySurge/main/modules/wechat-applet.sgmodule","order":3,"note":"补齐微信小程序及相关页面广告。"},
+    {"id":"bilibili","name":"哔哩哔哩净化","emoji":"📺","category":"app","source":"app2smile","url":"https://raw.githubusercontent.com/vpromise/MySurge/main/modules/bilibili.sgmodule","order":4,"note":"开屏、推荐、动态和播放页净化；与 1080P 功能分开。"},
+    {"id":"bilibili-hd","name":"B 站 1080P","emoji":"🎞️","category":"enhancement","source":"Yfamilys","url":"https://raw.githubusercontent.com/vpromise/MySurge/main/modules/bilibili-hd.sgmodule","order":5,"note":"独立画质增强，可单独关闭。"},
+    {"id":"youtube","name":"YouTube 净化","emoji":"▶️","category":"app","source":"Maasea","url":"https://raw.githubusercontent.com/vpromise/MySurge/main/modules/youtube.sgmodule","order":6,"note":"广告净化、画中画和后台播放。"},
+    {"id":"zhihu","name":"知乎净化","emoji":"🔷","category":"app","source":"Yfamilys","url":"https://raw.githubusercontent.com/vpromise/MySurge/main/modules/zhihu.sgmodule","order":7,"note":"列表广告及页面精简。"},
+    {"id":"xiaohongshu","name":"小红书净化","emoji":"📕","category":"app","source":"QingRex","url":"https://raw.githubusercontent.com/vpromise/MySurge/main/modules/xiaohongshu.sgmodule","order":8,"note":"开屏、信息流和搜索页净化。"},
+    {"id":"railway-12306","name":"12306 净化","emoji":"🚄","category":"app","source":"QingRex","url":"https://raw.githubusercontent.com/vpromise/MySurge/main/modules/railway-12306.sgmodule","order":9,"note":"开屏及页面广告净化。"},
+    {"id":"didi","name":"滴滴出行净化","emoji":"🚕","category":"app","source":"QingRex","url":"https://raw.githubusercontent.com/vpromise/MySurge/main/modules/didi.sgmodule","order":10,"note":"页面活动和广告入口净化。"},
+    {"id":"amap","name":"高德地图净化","emoji":"🧭","category":"app","source":"QingRex","url":"https://raw.githubusercontent.com/vpromise/MySurge/main/modules/amap.sgmodule","order":11,"note":"Yfamilys 当前高德文件存在转换语法错误，因此使用已通过检查的 QingRex 版本。"},
+    {"id":"xianyu","name":"闲鱼净化","emoji":"🐟","category":"app","source":"QingRex","url":"https://raw.githubusercontent.com/vpromise/MySurge/main/modules/xianyu.sgmodule","order":12,"note":"开屏、首页和搜索页净化。"},
+    {"id":"cainiao","name":"菜鸟净化","emoji":"📦","category":"app","source":"QingRex","url":"https://raw.githubusercontent.com/vpromise/MySurge/main/modules/cainiao.sgmodule","order":13,"note":"首页及相关页面净化。"},
+    {"id":"smzdm","name":"什么值得买净化","emoji":"💰","category":"app","source":"QingRex","url":"https://raw.githubusercontent.com/vpromise/MySurge/main/modules/smzdm.sgmodule","order":14,"note":"开屏、首页和搜索页净化。"},
+    {"id":"vvebo","name":"Vvebo 时间线修复","emoji":"🕊️","category":"enhancement","source":"QingRex","url":"https://raw.githubusercontent.com/vpromise/MySurge/main/modules/vvebo.sgmodule","order":15,"note":"与微博净化处理相同接口；使用 Vvebo 时停用微博净化。"},
+    {"id":"startup-supplement","name":"开屏及 URL 补漏","emoji":"🚫","category":"generic","source":"Yfamilys","url":"https://raw.githubusercontent.com/vpromise/MySurge/main/modules/startup-supplement.sgmodule","order":16,"note":"覆盖面较广，建议最后启用；异常时优先关闭。"},
     {"id":"advertising-lite","name":"广告规则拦截","emoji":"🛡️","category":"generic","source":"MySurge / Yfamilys","url":"https://raw.githubusercontent.com/vpromise/MySurge/main/modules/advertising-lite.sgmodule","order":17,"note":"轻量引用 Yfamilys AdvertisingLite.list，更新周期为 24 小时。"}
   ]
   </script>
