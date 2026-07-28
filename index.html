@@ -194,7 +194,7 @@
     <p class="lead">Surge iOS App 净化与功能增强模块。按编号安装 App 专用模块，通用补漏放到最后。</p>
 
     <div class="notice">
-      已经装过旧版时，请先删除 Uncategorized 中的旧副本再重新安装；本页模块会统一进入 vpromise 分类。微博净化与 Vvebo 时间线修复不要同时启用。
+      已经装过旧版时，请先删除 Uncategorized 中的旧副本再重新安装；本页模块会统一进入 vpromise 分类。微博净化与 Vvebo 时间线修复不要同时启用；智行可能影响携程共用接口。
     </div>
 
     <div class="filters" aria-label="模块筛选">
@@ -207,7 +207,7 @@
     <section class="grid" id="module-grid"></section>
 
     <footer>
-      模块来自 Yfamilys、原始作者与 QingRex；仓库快照仅统一增加 vpromise 分类。
+      模块来自 Yfamilys、原始作者、QingRex 与 fmz200；仓库快照统一增加 vpromise 分类，WPS 和云闪付使用本项目审慎缩减的轻量版本。
       <a href="https://github.com/vpromise/MySurge">查看项目与验证记录</a>
     </footer>
   </main>
@@ -228,9 +228,20 @@
     {"id":"xianyu","name":"闲鱼净化","emoji":"🐟","category":"app","source":"QingRex","url":"https://raw.githubusercontent.com/vpromise/MySurge/main/modules/xianyu.sgmodule","order":12,"note":"开屏、首页和搜索页净化。"},
     {"id":"cainiao","name":"菜鸟净化","emoji":"📦","category":"app","source":"QingRex","url":"https://raw.githubusercontent.com/vpromise/MySurge/main/modules/cainiao.sgmodule","order":13,"note":"首页及相关页面净化。"},
     {"id":"smzdm","name":"什么值得买净化","emoji":"💰","category":"app","source":"QingRex","url":"https://raw.githubusercontent.com/vpromise/MySurge/main/modules/smzdm.sgmodule","order":14,"note":"开屏、首页和搜索页净化。"},
-    {"id":"vvebo","name":"Vvebo 时间线修复","emoji":"🕊️","category":"enhancement","source":"QingRex","url":"https://raw.githubusercontent.com/vpromise/MySurge/main/modules/vvebo.sgmodule","order":15,"note":"与微博净化处理相同接口；使用 Vvebo 时停用微博净化。"},
-    {"id":"startup-supplement","name":"开屏及 URL 补漏","emoji":"🚫","category":"generic","source":"Yfamilys","url":"https://raw.githubusercontent.com/vpromise/MySurge/main/modules/startup-supplement.sgmodule","order":16,"note":"覆盖面较广，建议最后启用；异常时优先关闭。"},
-    {"id":"advertising-lite","name":"广告规则拦截","emoji":"🛡️","category":"generic","source":"MySurge / Yfamilys","url":"https://raw.githubusercontent.com/vpromise/MySurge/main/modules/advertising-lite.sgmodule","order":17,"note":"轻量引用 Yfamilys AdvertisingLite.list，更新周期为 24 小时。"}
+    {"id":"jd","name":"京东净化","emoji":"🐕","category":"app","source":"QingRex","url":"https://raw.githubusercontent.com/vpromise/MySurge/main/modules/jd.sgmodule","order":15,"note":"移除开屏广告，并精简“我的”页面推广。"},
+    {"id":"taobao","name":"淘宝 / 一淘净化","emoji":"🛍️","category":"app","source":"QingRex","url":"https://raw.githubusercontent.com/vpromise/MySurge/main/modules/taobao.sgmodule","order":16,"note":"过滤淘宝开屏广告，并覆盖一淘使用的相关广告接口。"},
+    {"id":"dewu","name":"得物净化","emoji":"👟","category":"app","source":"QingRex","url":"https://raw.githubusercontent.com/vpromise/MySurge/main/modules/dewu.sgmodule","order":17,"note":"移除开屏、弹窗、热搜及推荐信息流，精简消息和个人页面。"},
+    {"id":"shihuo","name":"识货净化","emoji":"🏷️","category":"app","source":"fmz200","url":"https://raw.githubusercontent.com/vpromise/MySurge/main/modules/shihuo.sgmodule","order":18,"note":"移除识货开屏广告及对应图片资源。"},
+    {"id":"dianping","name":"大众点评净化","emoji":"🍽️","category":"app","source":"fmz200","url":"https://raw.githubusercontent.com/vpromise/MySurge/main/modules/dianping.sgmodule","order":19,"note":"处理开屏和部分页面推广；MITM 范围较广，页面异常时优先停用。"},
+    {"id":"wps","name":"WPS 轻量净化","emoji":"📄","category":"app","source":"MySurge / fmz200","url":"https://raw.githubusercontent.com/vpromise/MySurge/main/modules/wps.sgmodule","order":20,"note":"只拦截 WPS 广告统计请求，不包含会员或稻壳解锁。"},
+    {"id":"zhixing","name":"智行火车票净化","emoji":"🚆","category":"app","source":"fmz200","url":"https://raw.githubusercontent.com/vpromise/MySurge/main/modules/zhixing.sgmodule","order":21,"note":"移除开屏广告；与携程共用接口，携程功能异常时停用。"},
+    {"id":"umetrip","name":"航旅纵横净化","emoji":"✈️","category":"app","source":"QingRex","url":"https://raw.githubusercontent.com/vpromise/MySurge/main/modules/umetrip.sgmodule","order":22,"note":"过滤启动及首页广告。"},
+    {"id":"unionpay","name":"云闪付轻量净化","emoji":"💳","category":"app","source":"MySurge / fmz200","url":"https://raw.githubusercontent.com/vpromise/MySurge/main/modules/unionpay.sgmodule","order":23,"note":"只拦截明确广告域名，不启用 MITM，也不修改支付接口。"},
+    {"id":"meituan","name":"美团净化","emoji":"🍱","category":"app","source":"fmz200","url":"https://raw.githubusercontent.com/vpromise/MySurge/main/modules/meituan.sgmodule","order":24,"note":"通过域名规则拦截广告及统计请求，不启用 MITM。"},
+    {"id":"mijia","name":"米家净化","emoji":"🏠","category":"app","source":"fmz200","url":"https://raw.githubusercontent.com/vpromise/MySurge/main/modules/mijia.sgmodule","order":25,"note":"移除开屏和推荐横幅；仅解密 home.mi.com。"},
+    {"id":"vvebo","name":"Vvebo 时间线修复","emoji":"🕊️","category":"enhancement","source":"QingRex","url":"https://raw.githubusercontent.com/vpromise/MySurge/main/modules/vvebo.sgmodule","order":26,"note":"与微博净化处理相同接口；使用 Vvebo 时停用微博净化。"},
+    {"id":"startup-supplement","name":"开屏及 URL 补漏","emoji":"🚫","category":"generic","source":"Yfamilys","url":"https://raw.githubusercontent.com/vpromise/MySurge/main/modules/startup-supplement.sgmodule","order":27,"note":"覆盖面较广，建议最后启用；异常时优先关闭。"},
+    {"id":"advertising-lite","name":"广告规则拦截","emoji":"🛡️","category":"generic","source":"MySurge / Yfamilys","url":"https://raw.githubusercontent.com/vpromise/MySurge/main/modules/advertising-lite.sgmodule","order":28,"note":"轻量引用 Yfamilys AdvertisingLite.list，更新周期为 24 小时。"}
   ]
   </script>
 

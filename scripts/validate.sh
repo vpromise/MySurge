@@ -8,6 +8,8 @@ manifest_file="$repo_root/manifest.json"
 surge_cli=${SURGE_CLI:-/Applications/Surge.app/Contents/Applications/surge-cli}
 validation_tmp=$(mktemp -d /tmp/mysurge-validate.XXXXXX)
 combined_file="$validation_tmp/combined.conf"
+module_count=$(jq '.modules | length' "$manifest_file")
+upstream_count=$(jq '[.modules[] | select(.upstreamUrl != null)] | length' "$manifest_file")
 
 if [[ ! -x "$surge_cli" ]]; then
   print -u2 "Surge checker not found: $surge_cli"
@@ -16,7 +18,7 @@ fi
 
 jq -e '
   .schema == 1
-  and (.modules | length == 17)
+  and (.modules | length > 0)
   and ([.modules[].id] | length == (unique | length))
   and ([.modules[].order] == ([.modules[].order] | sort))
   and (all(.modules[]; .localPath != null))
@@ -59,8 +61,8 @@ while IFS=$'\t' read -r module_id module_url local_path; do
     "$module_id" "$module_source" "$module_bytes" "$module_sha"
 done < <(jq -r '.modules[] | [.id, .url, (.localPath // "")] | @tsv' "$manifest_file")
 
-if [[ $(awk '!/^#/ && NF {n++} END{print n+0}' "$repo_root/sources.lock") != 16 ]]; then
-  print -u2 "sources.lock must contain 16 upstream snapshots"
+if [[ $(awk '!/^#/ && NF {n++} END{print n+0}' "$repo_root/sources.lock") != "$upstream_count" ]]; then
+  print -u2 "sources.lock must contain $upstream_count upstream snapshots"
   exit 1
 fi
 
@@ -120,6 +122,8 @@ if rg -n -i \
 fi
 
 printf '\nCombined profile: OK\n'
+printf 'Modules: %s (%s upstream snapshots, %s curated local modules)\n' \
+  "$module_count" "$upstream_count" "$((module_count - upstream_count))"
 printf 'AdvertisingLite.list: %s, %s bytes\n' \
   "$rule_meta" "$(wc -c < "$validation_tmp/AdvertisingLite.list" | tr -d ' ')"
 printf 'Validation artifacts: %s\n' "$validation_tmp"

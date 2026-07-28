@@ -1,0 +1,12 @@
+#!name=WPS 轻量净化
+#!desc=仅拦截 WPS 广告统计请求，不包含会员或稻壳解锁
+#!category=vpromise
+#!author=MySurge
+#!homepage=https://github.com/vpromise/MySurge
+# 精简自 fmz200/wool_scripts 的 WPS 模块，只保留 WPS 自身广告请求与必要主机名。
+
+[URL Rewrite]
+^https?:\/\/ios\.wps\.cn\/ad-statistics-service - reject
+
+[MITM]
+hostname = %APPEND% ios.wps.cn

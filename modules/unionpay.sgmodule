@@ -1,0 +1,10 @@
+#!name=云闪付轻量净化
+#!desc=仅拦截明确广告域名，不启用 MITM，不修改支付接口
+#!category=vpromise
+#!author=MySurge
+#!homepage=https://github.com/vpromise/MySurge
+# 精简自 fmz200/wool_scripts 的云闪付模块，主动排除支付、远程配置和推送接口。
+
+[Rule]
+DOMAIN,ads.95516.com,REJECT
+DOMAIN,ads.cup.com.cn,REJECT
