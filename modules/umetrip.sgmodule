@@ -1,19 +1,19 @@
-#!name=航旅纵横去广告
+#!name=航旅纵横
 #!category=vpromise
-#!desc=过滤航旅纵横广告
-#!author=佚名
-#!icon=https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/Umetrip.png
-#!openUrl=https://apps.apple.com/app/id480161784
-#!tag=去广告
-#!loon_version=3.2.4(787)
-#!homepage=https://hub.kelee.one
-#!date=2025-05-13 15:17:08
+#!desc=某些APP要清除缓存或者重新安装拦截广告才会生效！
+#!author=奶思
+#!homepage=https://github.com/fmz200/wool_scripts
+#!raw-url=https://github.com/fmz200/wool_scripts/raw/main/Surge/module/split/partH/HangLvZongHeng.sgmodule
+#!tg-channel=https://t.me/inaisi
+#!arguments=hlzh_enable:true
 
-[Rule]
-URL-REGEX,"^http?:\/\/(discardrp|startup)\.umetrip\.com\/gateway\/api\/umetrip\/native",REJECT,extended-matching
+[URL Rewrite]
+# 此条存在首页横幅误杀，可以禁止MITM域名
+^https:\/\/oss\.umetrip\.com\/fs\/advert\/polite - reject
+^http?:\/\/(discardrp|startup)\.umetrip\.com\/gateway\/api\/umetrip\/native - reject
 
 [Script]
-移除首页广告 = type=http-response, pattern=^http?:\/\/(114\.115\.217\.129)|(home\.umetrip\.com)\/gateway\/api\/umetrip\/native$, script-path=https://kelee.one/Resource/JavaScript/Umetrip/Umetrip_remove_ads.js
+航旅纵横 = type=http-response, pattern=^http?:\/\/(114\.115\.217\.129)|(home\.umetrip\.com)\/gateway\/api\/umetrip\/native$, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/umetrip/umetrip_ads.js, requires-body=true, timeout=60
 
 [MITM]
-hostname = %APPEND% 114.115.217.129, home.umetrip.com
+hostname = %APPEND% home.umetrip.com, discardrp.umetrip.com, startup.umetrip.com, oss.umetrip.com

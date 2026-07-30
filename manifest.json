@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "title": "MySurge App 净化模块",
-  "updated": "2026-07-28",
+  "updated": "2026-07-30",
   "modules": [
     {
       "id": "weibo",
@@ -280,13 +280,25 @@
       "name": "航旅纵横净化",
       "emoji": "✈️",
       "category": "app",
-      "source": "QingRex",
+      "source": "fmz200",
       "url": "https://raw.githubusercontent.com/vpromise/MySurge/main/modules/umetrip.sgmodule",
-      "upstreamUrl": "https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/航旅纵横去广告.sgmodule",
+      "upstreamUrl": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Surge/module/split/partH/HangLvZongHeng.sgmodule",
       "localPath": "modules/umetrip.sgmodule",
       "order": 22,
       "conflicts": [],
-      "note": "过滤启动及首页广告。"
+      "note": "过滤启动及首页广告；新增 oss.umetrip.com 开屏素材拦截。"
+    },
+    {
+      "id": "ziroom",
+      "name": "自如净化",
+      "emoji": "🏘️",
+      "category": "app",
+      "source": "blackmatrix7 / MySurge",
+      "url": "https://raw.githubusercontent.com/vpromise/MySurge/main/modules/ziroom.sgmodule",
+      "localPath": "modules/ziroom.sgmodule",
+      "order": 23,
+      "conflicts": [],
+      "note": "拦截自如开屏接口并返回空 JSON；仅解密 ztoread.ziroom.com。"
     },
     {
       "id": "unionpay",
@@ -296,7 +308,7 @@
       "source": "MySurge / fmz200",
       "url": "https://raw.githubusercontent.com/vpromise/MySurge/main/modules/unionpay.sgmodule",
       "localPath": "modules/unionpay.sgmodule",
-      "order": 23,
+      "order": 24,
       "conflicts": [],
       "note": "只拦截明确广告域名，不启用 MITM，也不修改支付接口。"
     },
@@ -309,7 +321,7 @@
       "url": "https://raw.githubusercontent.com/vpromise/MySurge/main/modules/meituan.sgmodule",
       "upstreamUrl": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Surge/module/split/partM/Meituan.sgmodule",
       "localPath": "modules/meituan.sgmodule",
-      "order": 24,
+      "order": 25,
       "conflicts": [],
       "note": "通过域名规则拦截广告及统计请求，不启用 MITM。"
     },
@@ -322,7 +334,7 @@
       "url": "https://raw.githubusercontent.com/vpromise/MySurge/main/modules/mijia.sgmodule",
       "upstreamUrl": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Surge/module/split/partM/Mijia.sgmodule",
       "localPath": "modules/mijia.sgmodule",
-      "order": 25,
+      "order": 26,
       "conflicts": [],
       "note": "移除开屏和推荐横幅；仅解密 home.mi.com。"
     },
@@ -335,7 +347,7 @@
       "url": "https://raw.githubusercontent.com/vpromise/MySurge/main/modules/vvebo.sgmodule",
       "upstreamUrl": "https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/VVebo时间线修复.sgmodule",
       "localPath": "modules/vvebo.sgmodule",
-      "order": 26,
+      "order": 27,
       "conflicts": ["weibo"],
       "note": "与微博净化处理相同接口；使用 Vvebo 时停用微博净化。"
     },
@@ -348,7 +360,7 @@
       "url": "https://raw.githubusercontent.com/vpromise/MySurge/main/modules/startup-supplement.sgmodule",
       "upstreamUrl": "https://yfamilys.com/module/AdBlock.module",
       "localPath": "modules/startup-supplement.sgmodule",
-      "order": 27,
+      "order": 28,
       "conflicts": [],
       "note": "覆盖面较广，建议最后启用；异常时优先关闭。"
     },
@@ -360,7 +372,7 @@
       "source": "MySurge / Yfamilys",
       "url": "https://raw.githubusercontent.com/vpromise/MySurge/main/modules/advertising-lite.sgmodule",
       "localPath": "modules/advertising-lite.sgmodule",
-      "order": 28,
+      "order": 29,
       "conflicts": [],
       "note": "轻量引用 Yfamilys AdvertisingLite.list，更新周期为 24 小时。"
     }
