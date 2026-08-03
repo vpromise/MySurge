@@ -17,7 +17,7 @@ function is_fallback_url() {
   [[ ",${fallback_hosts:l}," == *",${url_host:l},"* ]]
 }
 
-for required_tool in curl jq perl rg shasum; do
+for required_tool in curl git grep jq perl shasum; do
   if ! command -v "$required_tool" >/dev/null 2>&1; then
     print -u2 "Required tool not found: $required_tool"
     exit 1
@@ -45,20 +45,20 @@ while IFS=$'\t' read -r module_id local_path; do
     exit 1
   fi
 
-  category_count=$(rg -c '^#!category=vpromise$' "$module_file" || true)
-  name_count=$(rg -c '^#!name[[:space:]]*=' "$module_file" || true)
+  category_count=$(grep -c '^#!category=vpromise$' "$module_file" || true)
+  name_count=$(grep -c '^#!name[[:space:]]*=' "$module_file" || true)
 
   if [[ "$category_count" != 1 || "$name_count" != 1 ]]; then
     print -u2 "Invalid module metadata: $module_id (name=$name_count, category=$category_count)"
     exit 1
   fi
 
-  if rg -q -i '<!doctype|<html([[:space:]>])' "$module_file"; then
+  if grep -Eqi '<!doctype|<html([[:space:]>])' "$module_file"; then
     print -u2 "Module looks like an HTML error page: $module_id"
     exit 1
   fi
 
-  if ! rg -q '^\[[^]]+\]$' "$module_file"; then
+  if ! grep -Eq '^\[[^]]+\]$' "$module_file"; then
     print -u2 "Module has no Surge section: $module_id"
     exit 1
   fi
@@ -123,7 +123,7 @@ while IFS=$'\t' read -r module_id upstream_url local_path; do
     continue
   fi
 
-  if [[ ! -s "$upstream_file" ]] || rg -q -i '<!doctype|<html([[:space:]>])' "$upstream_file"; then
+  if [[ ! -s "$upstream_file" ]] || grep -Eqi '<!doctype|<html([[:space:]>])' "$upstream_file"; then
     print -u2 "Invalid upstream response: $module_id"
     exit 1
   fi
@@ -147,12 +147,10 @@ while IFS=$'\t' read -r module_id upstream_url local_path; do
   fi
 done < <(jq -r '.modules[] | select(.upstreamUrl != null) | [.id, .upstreamUrl, .localPath] | @tsv' "$manifest_file")
 
-{
-  rg -o --no-filename 'script-path[[:space:]]*=[[:space:]]*https://[^,[:space:]]+' \
-    "$repo_root/modules" -g '*.sgmodule' | sed -E 's/^.*=[[:space:]]*//' || true
-  rg -o --no-filename 'RULE-SET,[[:space:]]*https://[^,[:space:]]+' \
-    "$repo_root/modules" -g '*.sgmodule' | sed -E 's/^RULE-SET,[[:space:]]*//' || true
-} | sort -u > "$ci_tmp/runtime-urls"
+perl -ne '
+  while (/script-path\s*=\s*(https:\/\/[^,\s]+)/g) { print "$1\n" }
+  while (/RULE-SET,\s*(https:\/\/[^,\s]+)/g) { print "$1\n" }
+' "$repo_root"/modules/*.sgmodule | sort -u > "$ci_tmp/runtime-urls"
 
 runtime_url_count=0
 fallback_runtime_count=0
@@ -176,18 +174,17 @@ while IFS= read -r runtime_url; do
     continue
   fi
 
-  if [[ ! -s "$runtime_file" ]] || rg -q -i '<!doctype|<html([[:space:]>])' "$runtime_file"; then
+  if [[ ! -s "$runtime_file" ]] || grep -Eqi '<!doctype|<html([[:space:]>])' "$runtime_file"; then
     print -u2 "Invalid runtime dependency: $runtime_url"
     exit 1
   fi
 done < "$ci_tmp/runtime-urls"
 
-if rg -n -i \
+if git -C "$repo_root" grep -n -I -E \
   '(^|[^[:alpha:]])(passphrase|p12|private-key|proxy-auth|password|bearer[[:space:]]+)[[:space:]]*=' \
-  "$repo_root" \
-  -g '!scripts/validate.sh' \
-  -g '!scripts/validate-ci.sh' \
-  -g '!.git/**'; then
+  -- . \
+  ':!scripts/validate.sh' \
+  ':!scripts/validate-ci.sh'; then
   print -u2 'Potential secret material found in repository'
   exit 1
 fi
