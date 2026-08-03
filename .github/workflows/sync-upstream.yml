@@ -1,0 +1,77 @@
+name: Sync upstream modules
+
+on:
+  schedule:
+    - cron: "23 11 * * 1"
+      timezone: "Asia/Shanghai"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: sync-upstream
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    name: Check upstream updates
+    runs-on: macos-15
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Sync upstream snapshots
+        run: ./scripts/sync.sh
+
+      - name: Run portable validation
+        run: ./scripts/validate-ci.sh
+
+      - name: Detect changes
+        id: changes
+        shell: zsh {0}
+        run: |
+          if [[ -n "$(git status --porcelain -- modules sources.lock)" ]]; then
+            print 'changed=true' >> "$GITHUB_OUTPUT"
+          else
+            print 'changed=false' >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create or update upstream sync pull request
+        if: steps.changes.outputs.changed == 'true'
+        shell: zsh {0}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          sync_branch='automation/upstream-sync'
+          pr_title='chore: sync upstream modules'
+          pr_body=$'Automated weekly upstream snapshot update.\n\n- Refreshed normalized modules\n- Updated `sources.lock`\n- Passed portable CI validation\n\nBefore merging, run `./scripts/validate.sh` on a Mac with Surge installed.'
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git switch -C "$sync_branch"
+          git add modules sources.lock
+          git commit -m "chore: sync upstream modules ($(date +%Y-%m-%d))"
+          git push --force origin "HEAD:refs/heads/$sync_branch"
+
+          pr_number=$(gh pr list \
+            --head "$sync_branch" \
+            --base main \
+            --state open \
+            --json number \
+            --jq '.[0].number')
+
+          if [[ -n "$pr_number" ]]; then
+            gh pr edit "$pr_number" --title "$pr_title" --body "$pr_body"
+          else
+            gh pr create \
+              --base main \
+              --head "$sync_branch" \
+              --title "$pr_title" \
+              --body "$pr_body"
+          fi

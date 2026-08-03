@@ -116,6 +116,7 @@ if rg -n -i \
   '(^|[^[:alpha:]])(passphrase|p12|private-key|proxy-auth|password|bearer[[:space:]]+)[[:space:]]*=' \
   "$repo_root" \
   -g '!scripts/validate.sh' \
+  -g '!scripts/validate-ci.sh' \
   -g '!.git/**'; then
   print -u2 "Potential secret material found in repository"
   exit 1

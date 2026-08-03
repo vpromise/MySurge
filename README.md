@@ -19,4 +19,6 @@
 ./scripts/validate.sh
 ```
 
+GitHub Actions 每周检查上游；有变化时自动创建更新 PR。
+
 模块来源包括 Yfamilys、QingRex、fmz200、blackmatrix7、app2smile 和原始作者。
