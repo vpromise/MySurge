@@ -2,7 +2,7 @@ name: Sync upstream modules
 
 on:
   schedule:
-    - cron: "23 11 * * 1"
+    - cron: "0 8 * * 0"
       timezone: "Asia/Shanghai"
   workflow_dispatch:
 
