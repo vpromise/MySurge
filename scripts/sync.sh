@@ -17,6 +17,7 @@ while IFS=$'\t' read -r module_id upstream_url local_path; do
   target_file="$repo_root/$local_path"
 
   http_meta=$(curl --globoff -L --fail --silent --show-error \
+    --user-agent 'Surge iOS/6.0' \
     --max-time 30 \
     --output "$upstream_file" \
     --write-out '%{http_code} %{content_type}' \

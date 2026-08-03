@@ -72,6 +72,7 @@ while IFS=$'\t' read -r module_id upstream_url local_path; do
   local_normalized="$validation_tmp/$module_id.local.normalized"
 
   curl --globoff -L --fail --silent --show-error \
+    --user-agent 'Surge iOS/6.0' \
     --max-time 30 \
     --output "$upstream_file" \
     "$upstream_url"
@@ -102,6 +103,7 @@ print '\n[Rule]\nFINAL,DIRECT' >> "$combined_file"
 "$surge_cli" --check "$combined_file" >/dev/null
 
 rule_meta=$(curl -L --fail --silent --show-error \
+  --user-agent 'Surge iOS/6.0' \
   --max-time 30 \
   --output "$validation_tmp/AdvertisingLite.list" \
   --write-out '%{http_code} %{content_type}' \

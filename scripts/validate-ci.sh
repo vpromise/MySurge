@@ -94,6 +94,7 @@ while IFS=$'\t' read -r module_id upstream_url local_path; do
 
   curl --globoff -L --fail --silent --show-error \
     --retry 2 \
+    --user-agent 'Surge iOS/6.0' \
     --max-time 30 \
     --output "$upstream_file" \
     "$upstream_url"
