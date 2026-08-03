@@ -19,10 +19,12 @@ jobs:
     name: Check upstream updates
     runs-on: macos-15
     timeout-minutes: 20
+    env:
+      MYSURGE_CI_FALLBACK_HOSTS: yfamilys.com
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 

@@ -8,6 +8,14 @@ manifest_file="$repo_root/manifest.json"
 ci_tmp=$(mktemp -d /tmp/mysurge-ci-validate.XXXXXX)
 module_count=$(jq '.modules | length' "$manifest_file")
 upstream_count=$(jq '[.modules[] | select(.upstreamUrl != null)] | length' "$manifest_file")
+fallback_hosts=${MYSURGE_CI_FALLBACK_HOSTS:-}
+fallback_hosts=${fallback_hosts// /}
+
+function is_fallback_url() {
+  local url_without_scheme=${1#*://}
+  local url_host=${url_without_scheme%%/*}
+  [[ ",${fallback_hosts:l}," == *",${url_host:l},"* ]]
+}
 
 for required_tool in curl jq perl rg shasum; do
   if ! command -v "$required_tool" >/dev/null 2>&1; then
@@ -87,17 +95,33 @@ if ! cmp -s "$ci_tmp/manifest-upstream-ids" "$ci_tmp/locked-upstream-ids"; then
   exit 1
 fi
 
+fallback_upstream_count=0
 while IFS=$'\t' read -r module_id upstream_url local_path; do
   upstream_file="$ci_tmp/$module_id.upstream"
   upstream_normalized="$ci_tmp/$module_id.upstream.normalized"
   local_normalized="$ci_tmp/$module_id.local.normalized"
+  locked_sha=$(awk -F $'\t' -v id="$module_id" '$1 == id {print $2}' "$repo_root/sources.lock")
+  locked_url=$(awk -F $'\t' -v id="$module_id" '$1 == id {print $3}' "$repo_root/sources.lock")
 
-  curl --globoff -L --fail --silent --show-error \
+  if ! curl --globoff -L --fail --silent --show-error \
     --retry 2 \
     --user-agent 'Surge iOS/6.0' \
     --max-time 30 \
     --output "$upstream_file" \
-    "$upstream_url"
+    "$upstream_url"; then
+    if ! is_fallback_url "$upstream_url"; then
+      exit 1
+    fi
+
+    if [[ ! "$locked_sha" =~ '^[0-9a-f]{64}$' || "$locked_url" != "$upstream_url" ]]; then
+      print -u2 "Invalid locked fallback snapshot: $module_id"
+      exit 1
+    fi
+
+    fallback_upstream_count=$((fallback_upstream_count + 1))
+    print "::warning title=Upstream validation deferred::$module_id could not be fetched; the locked snapshot was retained"
+    continue
+  fi
 
   if [[ ! -s "$upstream_file" ]] || rg -q -i '<!doctype|<html([[:space:]>])' "$upstream_file"; then
     print -u2 "Invalid upstream response: $module_id"
@@ -105,8 +129,6 @@ while IFS=$'\t' read -r module_id upstream_url local_path; do
   fi
 
   current_sha=$(shasum -a 256 "$upstream_file" | awk '{print $1}')
-  locked_sha=$(awk -F $'\t' -v id="$module_id" '$1 == id {print $2}' "$repo_root/sources.lock")
-  locked_url=$(awk -F $'\t' -v id="$module_id" '$1 == id {print $3}' "$repo_root/sources.lock")
 
   if [[ "$current_sha" != "$locked_sha" || "$upstream_url" != "$locked_url" ]]; then
     print -u2 "Upstream changed or source lock mismatch: $module_id"
@@ -133,17 +155,26 @@ done < <(jq -r '.modules[] | select(.upstreamUrl != null) | [.id, .upstreamUrl, 
 } | sort -u > "$ci_tmp/runtime-urls"
 
 runtime_url_count=0
+fallback_runtime_count=0
 while IFS= read -r runtime_url; do
   [[ -z "$runtime_url" ]] && continue
   runtime_url_count=$((runtime_url_count + 1))
   runtime_file="$ci_tmp/runtime-$runtime_url_count"
 
-  curl --globoff -L --fail --silent --show-error \
+  if ! curl --globoff -L --fail --silent --show-error \
     --retry 2 \
     --max-time 30 \
     --user-agent 'Surge iOS/6.0' \
     --output "$runtime_file" \
-    "$runtime_url"
+    "$runtime_url"; then
+    if ! is_fallback_url "$runtime_url"; then
+      exit 1
+    fi
+
+    fallback_runtime_count=$((fallback_runtime_count + 1))
+    print "::warning title=Runtime validation deferred::$runtime_url could not be fetched from the hosted runner"
+    continue
+  fi
 
   if [[ ! -s "$runtime_file" ]] || rg -q -i '<!doctype|<html([[:space:]>])' "$runtime_file"; then
     print -u2 "Invalid runtime dependency: $runtime_url"
@@ -164,5 +195,6 @@ fi
 printf 'Portable validation: OK\n'
 printf 'Modules: %s (%s upstream snapshots, %s curated local modules)\n' \
   "$module_count" "$upstream_count" "$((module_count - upstream_count))"
-printf 'Runtime dependencies: %s\n' "$runtime_url_count"
+printf 'Fallback upstream snapshots: %s\n' "$fallback_upstream_count"
+printf 'Runtime dependencies: %s (%s deferred)\n' "$runtime_url_count" "$fallback_runtime_count"
 printf 'Validation artifacts: %s\n' "$ci_tmp"
