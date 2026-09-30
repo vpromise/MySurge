@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "title": "MySurge App 净化模块",
-  "updated": "2026-07-30",
+  "updated": "2026-09-30",
   "modules": [
     {
       "id": "weibo",
@@ -53,20 +53,7 @@
       "localPath": "modules/bilibili.sgmodule",
       "order": 4,
       "conflicts": [],
-      "note": "开屏、推荐、动态和播放页净化；与 1080P 功能分开。"
-    },
-    {
-      "id": "bilibili-hd",
-      "name": "B 站 1080P",
-      "emoji": "🎞️",
-      "category": "enhancement",
-      "source": "Yfamilys",
-      "url": "https://raw.githubusercontent.com/vpromise/MySurge/main/modules/bilibili-hd.sgmodule",
-      "upstreamUrl": "https://yfamilys.com/module/bili.module",
-      "localPath": "modules/bilibili-hd.sgmodule",
-      "order": 5,
-      "conflicts": [],
-      "note": "独立画质增强，可单独关闭。"
+      "note": "开屏、推荐、动态和播放页净化。"
     },
     {
       "id": "youtube",
@@ -77,7 +64,7 @@
       "url": "https://raw.githubusercontent.com/vpromise/MySurge/main/modules/youtube.sgmodule",
       "upstreamUrl": "https://raw.githubusercontent.com/Maasea/sgmodule/master/YouTube.Enhance.sgmodule",
       "localPath": "modules/youtube.sgmodule",
-      "order": 6,
+      "order": 5,
       "conflicts": [],
       "note": "广告净化、画中画和后台播放。"
     },
@@ -90,7 +77,7 @@
       "url": "https://raw.githubusercontent.com/vpromise/MySurge/main/modules/zhihu.sgmodule",
       "upstreamUrl": "https://yfamilys.com/sgmodule/ZhihuBlock.sgmodule",
       "localPath": "modules/zhihu.sgmodule",
-      "order": 7,
+      "order": 6,
       "conflicts": [],
       "note": "列表广告及页面精简。"
     },
@@ -103,7 +90,7 @@
       "url": "https://raw.githubusercontent.com/vpromise/MySurge/main/modules/xiaohongshu.sgmodule",
       "upstreamUrl": "https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/小红书去广告.sgmodule",
       "localPath": "modules/xiaohongshu.sgmodule",
-      "order": 8,
+      "order": 7,
       "conflicts": [],
       "note": "开屏、信息流和搜索页净化。"
     },
@@ -116,7 +103,7 @@
       "url": "https://raw.githubusercontent.com/vpromise/MySurge/main/modules/railway-12306.sgmodule",
       "upstreamUrl": "https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/12306去广告.sgmodule",
       "localPath": "modules/railway-12306.sgmodule",
-      "order": 9,
+      "order": 8,
       "conflicts": [],
       "note": "开屏及页面广告净化。"
     },
@@ -129,7 +116,7 @@
       "url": "https://raw.githubusercontent.com/vpromise/MySurge/main/modules/didi.sgmodule",
       "upstreamUrl": "https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/滴滴出行去广告.sgmodule",
       "localPath": "modules/didi.sgmodule",
-      "order": 10,
+      "order": 9,
       "conflicts": [],
       "note": "页面活动和广告入口净化。"
     },
@@ -142,7 +129,7 @@
       "url": "https://raw.githubusercontent.com/vpromise/MySurge/main/modules/amap.sgmodule",
       "upstreamUrl": "https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/高德地图去广告.sgmodule",
       "localPath": "modules/amap.sgmodule",
-      "order": 11,
+      "order": 10,
       "conflicts": [],
       "note": "Yfamilys 当前高德文件存在转换语法错误，因此使用已通过检查的 QingRex 版本。"
     },
@@ -155,7 +142,7 @@
       "url": "https://raw.githubusercontent.com/vpromise/MySurge/main/modules/xianyu.sgmodule",
       "upstreamUrl": "https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/闲鱼去广告.sgmodule",
       "localPath": "modules/xianyu.sgmodule",
-      "order": 12,
+      "order": 11,
       "conflicts": [],
       "note": "开屏、首页和搜索页净化。"
     },
@@ -168,7 +155,7 @@
       "url": "https://raw.githubusercontent.com/vpromise/MySurge/main/modules/cainiao.sgmodule",
       "upstreamUrl": "https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/菜鸟去广告.sgmodule",
       "localPath": "modules/cainiao.sgmodule",
-      "order": 13,
+      "order": 12,
       "conflicts": [],
       "note": "首页及相关页面净化。"
     },
@@ -181,7 +168,7 @@
       "url": "https://raw.githubusercontent.com/vpromise/MySurge/main/modules/smzdm.sgmodule",
       "upstreamUrl": "https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/什么值得买去广告.sgmodule",
       "localPath": "modules/smzdm.sgmodule",
-      "order": 14,
+      "order": 13,
       "conflicts": [],
       "note": "开屏、首页和搜索页净化。"
     },
@@ -194,7 +181,7 @@
       "url": "https://raw.githubusercontent.com/vpromise/MySurge/main/modules/jd.sgmodule",
       "upstreamUrl": "https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/京东去广告.sgmodule",
       "localPath": "modules/jd.sgmodule",
-      "order": 15,
+      "order": 14,
       "conflicts": [],
       "note": "移除开屏广告，并精简“我的”页面推广。"
     },
@@ -207,7 +194,7 @@
       "url": "https://raw.githubusercontent.com/vpromise/MySurge/main/modules/taobao.sgmodule",
       "upstreamUrl": "https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/淘宝去广告.sgmodule",
       "localPath": "modules/taobao.sgmodule",
-      "order": 16,
+      "order": 15,
       "conflicts": [],
       "note": "过滤淘宝开屏广告，并覆盖一淘使用的相关广告接口。"
     },
@@ -220,7 +207,7 @@
       "url": "https://raw.githubusercontent.com/vpromise/MySurge/main/modules/dewu.sgmodule",
       "upstreamUrl": "https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/得物去广告.sgmodule",
       "localPath": "modules/dewu.sgmodule",
-      "order": 17,
+      "order": 16,
       "conflicts": [],
       "note": "移除开屏、弹窗、热搜及推荐信息流，精简消息和个人页面。"
     },
@@ -233,7 +220,7 @@
       "url": "https://raw.githubusercontent.com/vpromise/MySurge/main/modules/shihuo.sgmodule",
       "upstreamUrl": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Surge/module/split/partS/ShiHuo.sgmodule",
       "localPath": "modules/shihuo.sgmodule",
-      "order": 18,
+      "order": 17,
       "conflicts": [],
       "note": "移除识货开屏广告及对应图片资源。"
     },
@@ -246,7 +233,7 @@
       "url": "https://raw.githubusercontent.com/vpromise/MySurge/main/modules/dianping.sgmodule",
       "upstreamUrl": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Surge/module/split/partD/DianPing.sgmodule",
       "localPath": "modules/dianping.sgmodule",
-      "order": 19,
+      "order": 18,
       "conflicts": [],
       "note": "处理开屏和部分页面推广；MITM 范围较广，页面异常时优先停用。"
     },
@@ -258,7 +245,7 @@
       "source": "MySurge / fmz200",
       "url": "https://raw.githubusercontent.com/vpromise/MySurge/main/modules/wps.sgmodule",
       "localPath": "modules/wps.sgmodule",
-      "order": 20,
+      "order": 19,
       "conflicts": [],
       "note": "只拦截 WPS 广告统计请求，不包含会员或稻壳解锁。"
     },
@@ -271,7 +258,7 @@
       "url": "https://raw.githubusercontent.com/vpromise/MySurge/main/modules/zhixing.sgmodule",
       "upstreamUrl": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Surge/module/split/partZ/ZhiXingAPP.sgmodule",
       "localPath": "modules/zhixing.sgmodule",
-      "order": 21,
+      "order": 20,
       "conflicts": [],
       "note": "移除开屏广告；与携程共用接口，携程功能异常时停用。"
     },
@@ -284,7 +271,7 @@
       "url": "https://raw.githubusercontent.com/vpromise/MySurge/main/modules/umetrip.sgmodule",
       "upstreamUrl": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Surge/module/split/partH/HangLvZongHeng.sgmodule",
       "localPath": "modules/umetrip.sgmodule",
-      "order": 22,
+      "order": 21,
       "conflicts": [],
       "note": "过滤启动及首页广告；新增 oss.umetrip.com 开屏素材拦截。"
     },
@@ -296,7 +283,7 @@
       "source": "blackmatrix7 / MySurge",
       "url": "https://raw.githubusercontent.com/vpromise/MySurge/main/modules/ziroom.sgmodule",
       "localPath": "modules/ziroom.sgmodule",
-      "order": 23,
+      "order": 22,
       "conflicts": [],
       "note": "拦截自如开屏接口并返回空 JSON；仅解密 ztoread.ziroom.com。"
     },
@@ -308,7 +295,7 @@
       "source": "MySurge / fmz200",
       "url": "https://raw.githubusercontent.com/vpromise/MySurge/main/modules/unionpay.sgmodule",
       "localPath": "modules/unionpay.sgmodule",
-      "order": 24,
+      "order": 23,
       "conflicts": [],
       "note": "只拦截明确广告域名，不启用 MITM，也不修改支付接口。"
     },
@@ -321,7 +308,7 @@
       "url": "https://raw.githubusercontent.com/vpromise/MySurge/main/modules/meituan.sgmodule",
       "upstreamUrl": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Surge/module/split/partM/Meituan.sgmodule",
       "localPath": "modules/meituan.sgmodule",
-      "order": 25,
+      "order": 24,
       "conflicts": [],
       "note": "通过域名规则拦截广告及统计请求，不启用 MITM。"
     },
@@ -334,7 +321,7 @@
       "url": "https://raw.githubusercontent.com/vpromise/MySurge/main/modules/mijia.sgmodule",
       "upstreamUrl": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/Surge/module/split/partM/Mijia.sgmodule",
       "localPath": "modules/mijia.sgmodule",
-      "order": 26,
+      "order": 25,
       "conflicts": [],
       "note": "移除开屏和推荐横幅；仅解密 home.mi.com。"
     },
@@ -347,7 +334,7 @@
       "url": "https://raw.githubusercontent.com/vpromise/MySurge/main/modules/vvebo.sgmodule",
       "upstreamUrl": "https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/VVebo时间线修复.sgmodule",
       "localPath": "modules/vvebo.sgmodule",
-      "order": 27,
+      "order": 26,
       "conflicts": ["weibo"],
       "note": "与微博净化处理相同接口；使用 Vvebo 时停用微博净化。"
     },
@@ -360,7 +347,7 @@
       "url": "https://raw.githubusercontent.com/vpromise/MySurge/main/modules/startup-supplement.sgmodule",
       "upstreamUrl": "https://yfamilys.com/module/AdBlock.module",
       "localPath": "modules/startup-supplement.sgmodule",
-      "order": 28,
+      "order": 27,
       "conflicts": [],
       "note": "覆盖面较广，建议最后启用；异常时优先关闭。"
     },
@@ -372,7 +359,7 @@
       "source": "MySurge / Yfamilys",
       "url": "https://raw.githubusercontent.com/vpromise/MySurge/main/modules/advertising-lite.sgmodule",
       "localPath": "modules/advertising-lite.sgmodule",
-      "order": 29,
+      "order": 28,
       "conflicts": [],
       "note": "轻量引用 Yfamilys AdvertisingLite.list，更新周期为 24 小时。"
     }
