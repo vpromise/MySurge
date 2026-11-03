@@ -110,6 +110,7 @@ while IFS=$'\t' read -r module_id upstream_url local_path; do
     --output "$upstream_file" \
     "$upstream_url"; then
     if ! is_fallback_url "$upstream_url"; then
+      print -u2 "Unavailable upstream: $module_id ($upstream_url)"
       exit 1
     fi
 
@@ -166,6 +167,7 @@ while IFS= read -r runtime_url; do
     --output "$runtime_file" \
     "$runtime_url"; then
     if ! is_fallback_url "$runtime_url"; then
+      print -u2 "Unavailable runtime dependency: $runtime_url"
       exit 1
     fi
 
