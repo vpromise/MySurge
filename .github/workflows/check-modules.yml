@@ -1,0 +1,27 @@
+name: Check modules
+
+on:
+  pull_request:
+    paths:
+      - modules/**
+      - scripts/**
+      - manifest.json
+      - sources.lock
+      - index.html
+      - .github/workflows/check-modules.yml
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: macos-15
+    timeout-minutes: 15
+    env:
+      MYSURGE_CI_FALLBACK_HOSTS: yfamilys.com
+    steps:
+      - uses: actions/checkout@v6
+      - name: Test native response rewrites
+        run: python3 scripts/test-modules.py
+      - name: Validate snapshots and runtime resources
+        run: ./scripts/validate-ci.sh
